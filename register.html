@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>SMSPI</title>
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<div data-role="page">
+    <div data-role="header" data-theme="c">
+         <div align="center">   <img src="http://i.picresize.com/images/2015/06/25/JlL0.jpg"   height="65" width="65"></div>
+    </div><!-- /header -->
+    <div role="main" class="ui-content">
+        <h3>Sign Up</h3>
+        <label for="txt-first-name">First Name</label>
+        <input type="text" name="txt-first-name" id="txt-first-name" value="">
+        <label for="txt-last-name">Last Name</label>
+        <input type="text" name="txt-last-name" id="txt-last-name" value="">
+        <label for="txt-email">Email Address</label>
+        <input type="text" name="txt-email" id="txt-email" value="">
+        <label for="txt-password">Password</label>
+        <input type="password" name="txt-password" id="txt-password" value="">
+        <label for="txt-password-confirm">Confirm Password</label>
+        <input type="password" name="txt-password-confirm" id="txt-password-confirm" value="">
+        <a href="#dlg-sign-up-sent" data-rel="popup" data-transition="pop" data-position-to="window" id="btn-submit" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5">Submit</a>
+        <div data-role="popup" id="dlg-sign-up-sent" data-dismissible="false" style="max-width:400px;">
+            <div data-role="header">
+                <h1>Almost done...</h1>
+            </div>
+            <div role="main" class="ui-content">
+                <h3>Confirm Your Email Address</h3>
+                <p>We sent you an email with instructions on how to confirm your email address. Please check your inbox and follow the instructions in the email.</p>
+                <div class="mc-text-center"><a href="sign-in.html" class="ui-btn ui-corner-all ui-shadow ui-btn-b mc-top-margin-1-5">OK</a></div>
+                    
+            </div>
+        </div>
+    </div><!-- /content -->
+</div><!-- /page -->
+
+</body>
+</html>
