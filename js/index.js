@@ -17,7 +17,7 @@ var app = {
         app.testZone = document.getElementById("test-zone");
         app.getDeviceInfo();
         app.getConnectionInfo();
-        app.runNotificationChain();
+       
     },
     
     getDeviceInfo: function() {
