@@ -2,7 +2,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.smspi.test"
-        version   = "2.2.0">
+        version   = "3.6.3">
     <name>Sms Pi</name>
 
     <description>
