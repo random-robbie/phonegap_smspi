@@ -33,8 +33,7 @@ function onSuccess(contacts) {
         html += '<label>No Contacts Listed</label>';
         html += '</li>';
     }
-}
- });
+}};
 function onError(contactError) {
     alert('Oops Something went wrong!');
     $.mobile.loading("hide");
