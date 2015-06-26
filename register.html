@@ -40,17 +40,7 @@
 </fieldset>
 <div id="result"></div>
 </div></div></div>
-<div data-role="page" id="dlg-sign-up-sent" data-dismissible="false" style="max-width:400px;">
-            <div data-role="header">
-                <h1>Almost done...</h1>
-            </div>
-            <div role="main" class="ui-content">
-                <h3>Confirm Your Email Address</h3>
-                <p>We sent you an email with instructions on how to confirm your email address. Please check your inbox and follow the instructions in the email.</p>
-                <div class="mc-text-center"><a href="login.html" class="ui-btn ui-corner-all ui-shadow ui-btn-b mc-top-margin-1-5">OK</a></div>
-                    
-            </div>
-        </div>
+        
 <script type="text/javascript">
 $("#callAjaxForm").on("submit", function(e){
         
@@ -68,21 +58,23 @@ $("#callAjaxForm").on("submit", function(e){
                   crossDomain: true,
                 success: function(data, status){ 
                  var obj = (data[0]);
+				console.log(obj);
                  if (obj.error == true) {
                  $("#result").html(obj.message);
-          $("input[type=text]").val("");
+				$("input[type=text]").val("");
                    }
                    if (obj.error == false)
                    {
-                   
-                   window.location.replace("register.html#dlg-sign-up-sent");
+				   
+				   $("#result").html('<p>We sent you an email with instructions on how to confirm your email address. Please check your inbox and follow the instructions in the email.</p><a href="login.html" class="ui-btn ui-corner-all ui-shadow ui-btn-b mc-top-margin-1-5">OK</a>');
+                   $("input[type=text]").val("");
                    }
       }
           
     });
    return false
   });
-</script></div>
+</script>
 <!-- /content -->
 <!-- /page -->
 </body>
