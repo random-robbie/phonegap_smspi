@@ -97,19 +97,20 @@ $("#newSMSForm").on("submit", function(e){
 		  cache: false,
 		  crossDomain: true,
           success: function(data, status){ 
-		 var obj = (data[0]);
-		 if (obj.error == true) {
-		 $("#result").html(obj.message);
-           $("input[type=text]").val("");
-		   }
-		   if (obj.error == false)
-		   {
-		   $("#result").html(obj.info);
-           $("input[type=text]").val("");
-		   console.log(obj);
-		   }
-      }
-	  
+		
+		 var Json = jQuery.parseJSON(data);
+		 console.log(Json);
+		if (Json[0].error == true)
+		{
+		 $("#result").html(Json[0].message);
+          $("input[type=text]").val("");
+		} else 
+		{
+		$("#result").html("Message Status:  "      + Json[0].info + "<br>");
+		}
+		
+      
+	  }
     });
     return false;
   });
