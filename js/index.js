@@ -34,7 +34,7 @@ function onSuccess(contacts) {
         html += '</li>';
     }
 }
- 
+ });
 function onError(contactError) {
     alert('Oops Something went wrong!');
     $.mobile.loading("hide");
