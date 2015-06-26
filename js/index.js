@@ -1,43 +1,38 @@
-document.addEventListener("deviceready", onDeviceReady, false);
- 
-function onDeviceReady() {
-    // we will not be doing anything!!
+
+document.addEventListener("deviceready", init, false);
+
+function init() {	
+	document.querySelector("#pickContact").addEventListener("touchend", doContactPicker, false);
 }
- 
-$(document).on("pageshow", function () {
-    $.mobile.loading("hide");
-    $("body").removeClass('ui-disabled');
-    if ($("#contactsList").length == 1) {
-        $("body").addClass('ui-disabled').css("background", "#000");
-        $.mobile.loading("show");
-        var options = new ContactFindOptions();
-        options.filter = "";
-        options.multiple = true;
-        var filter = ["displayName", "phoneNumbers"];
-        navigator.contacts.find(filter, onSuccess, onError, options);
-    }
-});
- 
-function onSuccess(contacts) {
-    var html = "";
-    for (var i = 0; i < contacts.length; i++) {
-        if ($.trim(contacts[i].displayName).length != 0 || $.trim(contacts[i].nickName).length != 0) {
-            if (contacts[i].phoneNumbers) {
-               
-				document.getElementById("to").setAttribute('value',contacts[i].phoneNumbers[j].value);
-        }
-    }
-    if (contacts.length === 0) {
-        html = '<li data-role="collapsible" data-iconpos="right" data-shadow="false" data-corners="false">';
-        html += '<h2>No Contacts</h2>';
-        html += '<label>No Contacts Listed</label>';
-        html += '</li>';
-    }
-}};
-function onError(contactError) {
-    alert('Oops Something went wrong!');
-    $.mobile.loading("hide");
-    $("body").removeClass('ui-disabled');
+
+function doContactPicker() {
+	navigator.contacts.pickContact(function(contact){
+		console.log('The following contact has been selected:' + JSON.stringify(contact));
+		//Build a simple string to display the Contact - would be better in Handlebars
+		var s = "";
+		
+
+		if(contact.phoneNumbers && contact.phoneNumbers.length) {
+			document.getElementById("to").setAttribute('value',+contact.phoneNumbers[0].value);
+		}
+
+		document.querySelector("#selectedContact").innerHTML=s;
+	},function(err){
+		console.log('Error: ' + err);
+	});
+}
+
+/*
+Handles iOS not returning displayName or returning null/""
+*/
+function getName(c) {
+	var name = c.displayName;
+	if(!name || name === "") {
+		if(c.name.formatted) return c.name.formatted;
+		if(c.name.givenName && c.name.familyName) return c.name.givenName +" "+c.name.familyName;
+		return "Nameless";
+	}
+	return name;
 }
 
 
