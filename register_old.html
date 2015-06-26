@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>SMSPI</title>
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<div data-role="page">
+    <div data-role="header" data-theme="c">
+         <div align="center">   <img src="http://i.picresize.com/images/2015/06/25/JlL0.jpg"   height="65" width="65"></div>
+    </div><!-- /header -->
+    <div role="main" class="ui-content">
+        <h3>Sign Up</h3>
+		<fieldset>
+        <form action="http://www.smspi.co.uk/register.app.php" method="post" class="form-horizontal" id ="callAjaxForm" name="callAjaxForm"> 
+   <div class="form-group">
+      <label for="inputPassword" class="col-lg-2 control-label">Username</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" name="username" id="inputUsername" placeholder="">
+        
+      </div>
+    </div>
+	
+  
+    <div class="form-group">
+      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputEmail" name="email" placeholder="">
+      </div>
+    </div>
+
+             <div class="form-group">
+      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+      <div class="col-lg-10">
+        <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Password">
+      </div>
+	  <input type="submit" value="Register" /> </fieldset>
+        </form>
+		<div id="result"></div></div>
+        <div data-role="page" id="dlg-sign-up-sent" data-dismissible="true" style="max-width:400px;">
+            <div data-role="header">
+                <h1>Almost done...</h1>
+            </div>
+            <div role="main" class="ui-content">
+                <h3>Confirm Your Email Address</h3>
+                <p>We sent you an email with instructions on how to confirm your email address. Please check your inbox and follow the instructions in the email.</p>
+                <div class="mc-text-center"><a href="sign-in.html" class="ui-btn ui-corner-all ui-shadow ui-btn-b mc-top-margin-1-5">OK</a></div>
+                    
+            </div>
+        </div>
+		<script>
+$("#callAjaxForm").on("submit", function(e){
+        
+        var $inputs = $('#callAjaxForm :input'), 
+            values = {};
+        $inputs.each(function() {
+          values[this.name] = this.value;
+        });
+        
+        $.ajax({
+          type : "POST",
+          url : "http://www.smspi.co.uk/register.app.php",
+          data: values,
+		  cache: false,
+		  crossDomain: true,
+		success: function(data, status){ 
+		 var obj = (data[0]);
+		 if (obj.error == true) {
+		 $("#result").html(obj.message);
+          $("input[type=text]").val("");
+		   }
+		   if (obj.error == false)
+		   {
+		   
+		   window.location.replace("register.html#dlg-sign-up-sent");
+		   }
+      }
+	  
+    });
+   return false
+  });
+</script>
+    </div><!-- /content -->
+</div><!-- /page -->
+
+</body>
+</html>
