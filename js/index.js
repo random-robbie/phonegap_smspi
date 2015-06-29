@@ -1,8 +1,7 @@
 
-document.addEventListener("deviceready", init, false);
-
-function init() {	
-	document.querySelector("#pickContact").addEventListener("touchend", doContactPicker, false);
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+    console.log("Device Ready");
 }
 
 function doContactPicker() {

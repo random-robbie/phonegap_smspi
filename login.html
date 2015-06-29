@@ -36,6 +36,11 @@
         </div><!-- /content -->
     </div><!-- /page -->
 	<script>
+	
+	document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+ console.log ("Device Ready");
+}
 $("#callAjaxForm").on("submit", function(e){
         
         var $inputs = $('#callAjaxForm :input'), 
