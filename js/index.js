@@ -1,40 +1,3 @@
-
-document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady() {
-    console.log("Device Ready");
-}
-
-function doContactPicker() {
-	navigator.contacts.pickContact(function(contact){
-		console.log('The following contact has been selected:' + JSON.stringify(contact));
-		//Build a simple string to display the Contact - would be better in Handlebars
-		var s = "";
-		
-
-		if(contact.phoneNumbers && contact.phoneNumbers.length) {
-			document.getElementById("to").setAttribute('value',+contact.phoneNumbers[0].value);
-		}
-
-		document.querySelector("#selectedContact").innerHTML=s;
-	},function(err){
-		console.log('Error: ' + err);
-	});
-}
-
-/*
-Handles iOS not returning displayName or returning null/""
-*/
-function getName(c) {
-	var name = c.displayName;
-	if(!name || name === "") {
-		if(c.name.formatted) return c.name.formatted;
-		if(c.name.givenName && c.name.familyName) return c.name.givenName +" "+c.name.familyName;
-		return "Nameless";
-	}
-	return name;
-}
-
-
 function setCookie(cname,cvalue,exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -54,15 +17,30 @@ function getCookie(cname) {
     }
     return "";
 }
+$(document).ready(function(){
+	 $("#submit").click(function(){	
+		  username=$("#txtf").val();
+		  password=$("#txts").val();
+		  $.ajax({
+		   type: "POST",
+		   url: "http://www.smspi.co.uk/login.app.php",
+		   data: "username="+username+"&password="+password,
+		   success: function(data){    
+				$(".error").html(data);
+				var obj = data[0];
+				console.log(obj.message);
+				if(obj.error === false)
+				{
+					setCookie("batman",obj.message,"90");
+					window.location="sendsms.html";
+				} else {
+					document.getElementById("error").innerHTML="<p>" + obj.message + "</p>";
+				}
+		   }
+		  });
+		return false;
+	});
+});
 
-function checkCookie() {
-    var user=getCookie("username");
-    if (user != "") {
-        alert("Welcome again " + user);
-    } else {
-       user = prompt("Please enter your name:","");
-       if (user != "" && user != null) {
-           setCookie("username", user, 30);
-       }
-    }
-}
+
+

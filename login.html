@@ -9,65 +9,30 @@
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-<script src="js/index.js"></script>
- 
-  
-</head>
+<script src="./js/index.js"></script>
 
-<body>
     <div data-role="page">
         <div data-role="header" data-theme="c">
            <div align="center">   <img src="http://i.picresize.com/images/2015/06/25/JlL0.jpg"   height="65" width="65"></div>
         </div><!-- /header -->
         <div role="main" class="ui-content">
-            <h3>Sign In</h3>
+           <h1>User Login</h1>
+<div class="login">
+    <form method="post" action="">
+      <p><input type="text" placeholder="Enter Username" name="txtf" id="txtf"/></p>
+      <p><input type="password" placeholder="Enter Password" name="txts" id="txts"/></p>
+      
+      <p class="submit"><input type="submit" name="submit" id="submit" value="Login"/></p>
+    </form>
+  </div>
+ 
+  <div id="error" class="error">
+  </div>
 
-			<form action="http://www.smspi.co.uk/login.app.php" method="post" id="callAjaxForm">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" value="">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" value="">
-            
-			<input name="submit" data-role="button" data-inline="true" type="submit" value="submit" />
-			</form>
-		<div id="result"></div>
             <p class="mc-top-margin-1-5"><a href="begin-password-reset.html">Can't access your account?</a></p>
            
         </div><!-- /content -->
     </div><!-- /page -->
-	<script>
 	
-$("#callAjaxForm").on("submit", function(e){
-        
-        var $inputs = $('#callAjaxForm :input'), 
-            values = {};
-        $inputs.each(function() {
-          values[this.name] = this.value;
-        });
-        
-        $.ajax({
-          type : "POST",
-          url : "http://www.smspi.co.uk/login.app.php",
-          data: values,
-		  cache: false,
-		  crossDomain: true,
-		success: function(data, status){ 
-		 var obj = (data[0]);
-		 if (obj.error == true) {
-		 $("#result").html(obj.message);
-          $("input[type=text]").val("");
-		   }
-		   if (obj.error == false)
-		   {
-		   var myhash = (obj.message);
-		   setCookie("hash",myhash,50);
-		   window.location.replace("sendsms.html");
-		   }
-      }
-	  
-    });
-   return false
-  });
-</script>
 </body>
 </html>
