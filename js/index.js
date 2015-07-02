@@ -26,13 +26,12 @@ $(document).ready(function(){
 		   url: "http://www.smspi.co.uk/login.app.php",
 		   data: "username="+username+"&password="+password,
 		   success: function(data){    
-				$(".error").html(data);
 				var obj = data[0];
 				console.log(obj.message);
 				if(obj.error === false)
 				{
 					setCookie("batman",obj.message,"90");
-					window.location="sendsms.html";
+					window.location="http://www.smspi.co.uk/phonegap/sendsms.html";
 				} else {
 					document.getElementById("error").innerHTML="<p>" + obj.message + "</p>";
 				}
