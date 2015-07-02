@@ -31,7 +31,7 @@ $(document).ready(function(){
 				if(obj.error === false)
 				{
 					setCookie("batman",obj.message,"90");
-					window.location="http://www.smspi.co.uk/phonegap/sendsms.html";
+					window.location="sendsms.html";
 				} else {
 					document.getElementById("error").innerHTML="<p>" + obj.message + "</p>";
 				}
